@@ -74,4 +74,16 @@ Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
-Source/Noesis/NoesisSDK/*
+Source/Noesis/NoesisSDK/Bin/**/*.*
+!Source/Noesis/NoesisSDK/Bin/**/*.so
+!Source/Noesis/NoesisSDK/Bin/**/*.dylib
+!Source/Noesis/NoesisSDK/Bin/**/*.dll
+!Source/Noesis/NoesisSDK/Bin/**/*.exe
+Source/Noesis/NoesisSDK/Bin/**/Samples*.exe
+
+Source/Noesis/NoesisSDK/Build
+Source/Noesis/NoesisSDK/Config
+Source/Noesis/NoesisSDK/Doc
+Source/Noesis/NoesisSDK/Src
+
+!Source/Noesis/NoesisSDK/Lib/**/*.*
