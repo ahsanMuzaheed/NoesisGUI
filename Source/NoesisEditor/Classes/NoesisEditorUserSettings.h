@@ -14,7 +14,7 @@
 // Generated header include
 #include "NoesisEditorUserSettings.generated.h"
 
-UCLASS(Config = EditorPerProjectUserSettings, DefaultConfig)
+UCLASS(Config = EditorPerProjectUserSettings)
 class NOESISEDITOR_API UNoesisEditorUserSettings : public UObject
 {
 	GENERATED_UCLASS_BODY()
