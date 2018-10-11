@@ -519,6 +519,9 @@ UObject* UNoesisXamlFactory::FactoryCreateBinary(UClass* Class, UObject* Parent,
 		XamlText = XamlText.Replace(*Comment, TEXT(""));
 	}
 
+	XamlText = XamlText.Replace(TEXT("<Window"), TEXT("<UserControl"));
+	XamlText = XamlText.Replace(TEXT("</Window>"), TEXT("</UserControl>"));
+
 	TArray<FXamlDescriptor> XamlDescriptors = ParseForXamls(XamlText);
 	ImportXamls(BasePackageName, ProjectURIRoot, Directory, XamlDescriptors);
 	for (auto XamlDescriptor : XamlDescriptors)
