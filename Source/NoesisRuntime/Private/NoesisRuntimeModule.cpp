@@ -39,7 +39,7 @@ static void NoesisErrorHandler(const char* Filename, uint32 Line, const char* De
 	UE_LOG(LogNoesis, Warning, TEXT("%s"), *NsStringToFString(Desc));
 }
 
-DECLARE_DWORD_COUNTER_STAT(TEXT("NoesisMemory"), STAT_NoesisMemory, STATGROUP_Noesis);
+DECLARE_DWORD_ACCUMULATOR_STAT(TEXT("NoesisMemory"), STAT_NoesisMemory, STATGROUP_Noesis);
 class NoesisMemoryAllocator : public Noesis::MemoryAllocator
 {
 public:
@@ -53,7 +53,10 @@ public:
 
 	virtual void* Realloc(void* Ptr, SIZE_T Size) override
 	{
-		return FMemory::Realloc(Ptr, Size);
+		const SIZE_T OldSize = FMemory::GetAllocSize(Ptr);
+		void* Result = FMemory::Realloc(Ptr, Size);
+		INC_DWORD_STAT_BY(STAT_NoesisMemory, FMemory::GetAllocSize(Result) - OldSize);
+		return Result;
 	}
 
 	virtual void Dealloc(void* Ptr)
